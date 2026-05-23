@@ -31,6 +31,31 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:631919637519:certificate/e0f16a97-e1a5-464d-b1b3-10e14c0dd064
+    alb.ingress.kubernetes.io/group.name: mahe1120
+spec:
+  ingressClassName: alb
+  rules:
+  - host: "app1.mahedevops.omline"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
+
 
   
 
