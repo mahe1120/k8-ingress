@@ -3,19 +3,16 @@ kind: Deployment
 metadata:
   name: app1
   labels:
-    project: ingress
-    app: deploy 
+    app: app1 
 spec:
   replicas: 2
   selector:
-  matchLabels:
-    project: ingress
-    app: deploy
+    matchLabels:
+      app: app1
   template:
     metadata:
       labels:
-        project: ingress
-        app: deploy
+       app: app1
     spec:
       containers:
       - name: app1
@@ -29,8 +26,7 @@ metadata:
   name: app1
 spec:
   selector:
-    project: ingress
-    app: deploy
+    app: app1
   ports:
   - protocol: TCP
     port: 80
