@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  labels:
+    project: ingress
+    app: deploy 
+spec:
+  replicas: 2
+  selector:
+  matchLabels:
+    project: ingress
+    app: deploy
+  template:
+    metadata:
+      labels:
+        project: ingress
+        app: deploy
+    spec:
+      containers:
+      - name: app1
+        image: mahe1120/app1:1.0.0
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: app1
+spec:
+  selector:
+    project: ingress
+    app: deploy
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+  
+
+
