@@ -45,7 +45,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: "app1.mahedevops.omline"
+  - host: "app1.mahedevops.online"
     http:
       paths:
       - pathType: Prefix
